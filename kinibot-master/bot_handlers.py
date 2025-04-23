@@ -31,9 +31,9 @@ async def answer(message):
                 item_year = types.InlineKeyboardButton(text='Год производства', callback_data='year')
                 item_countries = types.InlineKeyboardButton(text='Страны', callback_data='countries')
                 item_genres = types.InlineKeyboardButton(text='Жанры', callback_data='genres')
-                item_description = types.InlineKeyboardButton(text='Полное описание', callback_data='description')
-                item_description = types.InlineKeyboardButton(text='Добавить в избранное', callback_data='remember')
-                markup.add(item_rating, item_year, item_countries, item_genres, item_description)
+                #item_description = types.InlineKeyboardButton(text='Полное описание', callback_data='description')
+                #item_description = types.InlineKeyboardButton(text='Добавить в избранное', callback_data='remember')
+                markup.add(item_rating, item_year, item_countries, item_genres)
                 if os.path.exists('img.jpg'):
                     await bot.send_photo(message.chat.id,
                                          photo=open('img.jpg', 'rb'),
@@ -75,11 +75,11 @@ async def answer(call):
     elif call.data == 'genres':
         await bot.send_message(call.message.chat.id, f'Жанры: {api.get_film_genres(film)}')
 
-    elif call.data == 'description':
-        await bot.send_message(call.message.chat.id, api.get_film_full_description(film))
-
-    elif call.data == 'remember':
-        pass
+    #elif call.data == 'description':
+    #    await bot.send_message(call.message.chat.id, api.get_film_full_description(film))
+#
+    #elif call.data == 'remember':
+    #    pass
 
 
 asyncio.run(bot.polling(none_stop=True))
